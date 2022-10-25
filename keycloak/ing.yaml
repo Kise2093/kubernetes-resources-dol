@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pipr-keycloak.dol.go.th
+    http:
+      paths:
+      - backend:
+          service:
+            name: keycloak
+            port:
+              name: http
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - pipr-keycloak.dol.go.th
+    secretName: custom-ca
+status:
+  loadBalancer:
+    ingress:
+    - ip: 172.16.43.176
+

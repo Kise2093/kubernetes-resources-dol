@@ -1,0 +1,13 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+advertiseAddress: "172.16.43.192"
+bindPort: 6443
+nodeRegistration:
+  criSocket: "/var/run/cri-dockerd.sock"
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+networking:
+    podSubnet: "182.168.0.0/16"
+controlPlaneEndpoint: "172.16.43.192:6443"
+clusterName: "dol-prod-cluster"

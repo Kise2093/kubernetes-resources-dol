@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: tracing-vs
+spec:
+  gateways:
+  - tracing-gateway
+  hosts:
+  - pipr-tracing.dol.go.th
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: tracing
+        port:
+          number: 80
